@@ -28,7 +28,7 @@
 
 ## Usage
 
- * **Docker:** Docker images of exatorrent are also provided which lets exatorrent to be run in a Docker container. See [Docker Docs](docs/docker.md).
+ * **Docker:**
    ```bash
    docker build -t qiruizheng/exatorrent .
    或者 
