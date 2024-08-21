@@ -28,18 +28,18 @@
     if (exausername != '' && exausername != undefined && exausername != null) {
       if (exapassword != '' && exapassword != undefined && exapassword != null) {
         if (!(exausername.length > 5) || !(exapassword.length > 5)) {
-          alert('Invalid Credentials');
+          alert('信息无效');
           return;
         }
         localStorage.setItem('exausername', exausername);
         localStorage.setItem('exapassword', exapassword);
         Connect();
       } else {
-        alert('Password Field Cannot be Empty');
+        alert('密码不能为空');
         return;
       }
     } else {
-      alert('Username Field Cannot be Empty');
+      alert('用户名不能为空');
       return;
     }
     return;
@@ -58,15 +58,15 @@
       <a href="https://github.com/varbhat/exatorrent" target="_blank" rel="noopener noreferrer">
         <h2 class=" text-center text-5xl font-extrabold text-blue-200">exatorrent</h2>
       </a>
-      <p class="mt-2 text-center text-sm text-neutral-300">Sign in to your account</p>
+      <p class="mt-2 text-center text-sm text-neutral-300">登录您的账户</p>
     </div>
 
     <div class="mt-2">
-      <label for="username" class="sr-only">Username</label>
+      <label for="username" class="sr-only">用户名</label>
 
-      <input id="username" name="email" type="text" bind:value={exausername} required class="bg-neutral-800 my-2 appearance-none rounded-md w-full px-3 py-2 border border-neutral-800 placeholder-neutral-500 text-neutral-200 focus:outline-none" placeholder="Username" />
+      <input id="username" name="email" type="text" bind:value={exausername} required class="bg-neutral-800 my-2 appearance-none rounded-md w-full px-3 py-2 border border-neutral-800 placeholder-neutral-500 text-neutral-200 focus:outline-none" placeholder="Username" text="adminuser" />
 
-      <label for="password" class="sr-only">Password</label>
+      <label for="password" class="sr-only">密码</label>
 
       <div class="flex bg-neutral-800 rounded-md my-2 appearance-none border border-neutral-800 w-full">
         <input
@@ -78,7 +78,7 @@
           on:keydown={entertosignin}
           required
           class=" bg-neutral-800 appearance-none rounded-md w-full flex-grow px-3 py-2  border-none placeholder-neutral-500 text-neutral-200  focus:outline-none"
-          placeholder="Password" />
+          placeholder="Password" text="adminpassword" />
         <button type="button" class="focus:outline-none focus:text-green-500" on:click={toggleinput}>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neutral-400  my-2 mx-2 flex-grow " fill="none" viewBox="0 0 24 24" stroke="currentColor">
             {#if pwvisible}
@@ -95,7 +95,7 @@
         </button>
       </div>
 
-      <button type="button" on:click={signIn} class="w-full my-2  py-2 px-4 border-none text-sm font-medium rounded-md text-white bg-blue-900  outline-none focus:outline-none"> Sign in </button>
+      <button type="button" on:click={signIn} class="w-full my-2  py-2 px-4 border-none text-sm font-medium rounded-md text-white bg-blue-900  outline-none focus:outline-none">登录</button>
     </div>
   </div>
 </div>
