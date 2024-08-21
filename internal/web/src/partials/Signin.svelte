@@ -64,7 +64,7 @@
     <div class="mt-2">
       <label for="username" class="sr-only">用户名</label>
 
-      <input id="username" name="email" type="text" bind:value={exausername} required class="bg-neutral-800 my-2 appearance-none rounded-md w-full px-3 py-2 border border-neutral-800 placeholder-neutral-500 text-neutral-200 focus:outline-none" placeholder="Username" value="adminuser" />
+      <input id="username" name="email" type="text" bind:value={exausername} required class="bg-neutral-800 my-2 appearance-none rounded-md w-full px-3 py-2 border border-neutral-800 placeholder-neutral-500 text-neutral-200 focus:outline-none" placeholder="Username"/>
 
       <label for="password" class="sr-only">密码</label>
 
@@ -78,7 +78,7 @@
           on:keydown={entertosignin}
           required
           class=" bg-neutral-800 appearance-none rounded-md w-full flex-grow px-3 py-2  border-none placeholder-neutral-500 text-neutral-200  focus:outline-none"
-          placeholder="Password" value="adminpassword" />
+          placeholder="Password"/>
         <button type="button" class="focus:outline-none focus:text-green-500" on:click={toggleinput}>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neutral-400  my-2 mx-2 flex-grow " fill="none" viewBox="0 0 24 24" stroke="currentColor">
             {#if pwvisible}
