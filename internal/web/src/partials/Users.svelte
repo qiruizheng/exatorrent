@@ -82,7 +82,7 @@
   <div class="bg-black grid grid-flow-row text-white rounded-lg m-3 p-2 cursor-pointer focus:outline-none focus-within:bg-black noHL">
     <div class="flex items-center justify-between flex-wrap py-1 px-3">
       <div class="w-0 flex-1 flex items-center" on:click={userconnlistaction}>
-        <p class="ml-3 font-medium  truncate">User Connections</p>
+        <p class="ml-3 font-medium  truncate">用户连接</p>
       </div>
 
       {#if userconnlistOpen === true}
@@ -156,7 +156,7 @@
   <div class="bg-black grid grid-flow-row text-white rounded-lg m-3 p-2 cursor-pointer focus:outline-none focus-within:bg-black noHL">
     <div class="flex items-center justify-between flex-wrap py-1 px-3">
       <div class="w-0 flex-1 flex items-center" on:click={manageUsersaction}>
-        <p class="ml-3 font-medium  truncate">Manage Users</p>
+        <p class="ml-3 font-medium  truncate">管理用户</p>
       </div>
 
       {#if manageUsersOpen === true}
@@ -202,7 +202,7 @@
   <div class="bg-black grid grid-flow-row text-white rounded-lg m-3 p-2 cursor-pointer focus:outline-none focus-within:bg-black noHL">
     <div class="flex items-center justify-between flex-wrap py-1 px-3">
       <div class="w-0 flex-1 flex items-center" on:click={useraddaction}>
-        <p class="ml-3 font-medium  truncate">Add User</p>
+        <p class="ml-3 font-medium  truncate">新增用户</p>
       </div>
 
       <button type="button" class="-mr-1 flex p-2 rounded-md bg-neutral-800 focus:outline-none flex-shrink-0 mx-1" on:click={useraddaction}>
@@ -255,9 +255,9 @@
           </div>
 
           <select class="bg-neutral-800 rounded-md w-full flex-grow px-3 py-2 border-none placeholder-neutral-500 text-neutral-200 focus:outline-none" bind:value={newusertype}>
-            <option value="user">User</option>
-            <option value="disabled">Disabled</option>
-            <option value="admin">Admin</option>
+            <option value="user">普通用户</option>
+            <option value="disabled">禁用</option>
+            <option value="admin">管理员</option>
           </select>
 
           <button type="button" on:click={addUser} class="w-full my-2 py-2 px-4 border-none text-sm font-medium rounded-md text-white bg-indigo-900 outline-none focus:outline-none">Add User</button>
