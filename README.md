@@ -1,4 +1,4 @@
-# *exatorrent*
+# *exatorrent docker汉化版*
 ## 🧲 self-hostable torrent client
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/varbhat/exatorrent)
@@ -15,72 +15,27 @@
 <p><a href="docs/screenshots.md">Screenshots</a> &bull; <a href="https://github.com/varbhat/exatorrent/releases/latest">Releases</a> &bull; <a href="#features">Features</a> &bull; <a href="#usage"> Installation </a> &bull; <a href="docs/usage.md"> Usage</a> &bull; <a href="docs/docker.md">Docker</a> &bull; <a href="docs/build.md"> Build </a> &bull; <a href="LICENSE">License</a></p>
 <hr>
 
-* exatorrent is Elegant [BitTorrent](https://www.bittorrent.org/) Client written in [Go](https://go.dev/).
-* It is Simple, easy to use, yet feature rich.
-* It can be run locally or be hosted in Remote Server with good resources.
-* It is Single Completely Statically Linked Binary with Zero External Dependencies.
-* It is lightweight and light on resources.
-* It comes with Beautiful Responsive Web Client written in Svelte and Typescript.
-* Thanks to documented [WebSocket](https://datatracker.ietf.org/doc/html/rfc6455) [API](docs/API.md) of exatorrent, custom client can be created.
-* It supports Single User Mode and Multi User Mode.
-* Torrented Files are stored in local disk can be downloaded and streamed via HTTP/Browser/Media Players.
+* exatorrent 是用 [Go]（https://go.dev/） 编写的优雅 [BitTorrent]（https://www.bittorrent.org/） 客户端。
+*它简单，易于使用，但功能丰富。
+* 它可以在本地运行，也可以托管在具有良好资源的远程服务器中。
+* 它是单一的、完全静态链接的二进制文件，具有零外部依赖性。
+* 它重量轻，资源少。
+* 它带有用 Svelte 和 Typescript 编写的美观响应式 Web 客户端。
+* 感谢 exatorrent 的文档 [WebSocket]（https://datatracker.ietf.org/doc/html/rfc6455） [API]（docs/API.md），可以创建自定义客户端。
+* 它支持单用户模式和多用户模式。
+* 种子下载文件存储在本地磁盘中，可以通过 HTTP/浏览器/媒体播放器下载和流式传输。
 
-<hr>
-<p align="center">
-<img src="https://raw.githubusercontent.com/varbhat/exatorrent/assets/main.png" alt="exatorrent web client" width=400 height=550 />
-  <p align="center"><a href="docs/screenshots.md">More Screenshots →</a></p>
-</p>
-<hr>
 
 ## Usage
-Exatorrent can be operated using either of the following methods:
-* **Releases:** You can download precompiled binary for your Operating System from [Releases](https://github.com/varbhat/exatorrent/releases/latest). Mark it as executable and run it. Refer [Usage](docs/usage.md).
-  ```bash
-  wget https://github.com/varbhat/exatorrent/releases/latest/download/exatorrent-linux-amd64
-  chmod u+x ./exatorrent-linux-amd64
-  ./exatorrent-linux-amd64
-  ```
+
  * **Docker:** Docker images of exatorrent are also provided which lets exatorrent to be run in a Docker container. See [Docker Docs](docs/docker.md).
    ```bash
-   docker pull ghcr.io/varbhat/exatorrent:latest
-   docker run -p 5000:5000 -p 42069:42069 -v /path/to/directory:/exa/exadir ghcr.io/varbhat/exatorrent:latest
-   ```
- * **Manual Build:** exatorrent is open source and can be built from sources. See [Build Docs](docs/build.md).
-   ```bash
-   make web && make app
+   docker build -t qiruizheng/exatorrent .
+   或者 
+   docker pull qiruizheng/exatorrent:latest
+   docker run -p 5000:5000 -p 42069:42069 -v /path/to/directory:/exa/exadir qiruizheng/exatorrent:latest
    ```
 
-#### Notes:
-* Note that **Username** and **Password** of Default User created on first run are `adminuser` and `adminpassword` respectively.
-* You can change Password later but Username of Account can't be changed after creation. Refer [Usage](docs/usage.md#-admin).
-* [Github Actions](https://github.com/features/actions) is used to build and publish [Releases](https://github.com/varbhat/exatorrent/releases/latest) and [Docker Images](https://ghcr.io/varbhat/exatorrent) of exatorrent.
-
-
-## Features
-* Single Executable File with No Dependencies
-* Small in Size
-* Cross Platform
-* Download (or Build ) Single Executable Binary and run. That's it
-* Open and Stream Torrents in your Browser
-* Add Torrents by Magnet or by Infohash or Torrent File
-* Individual File Control (Start, Stop or Delete )
-* Stop, Remove or Delete Torrent
-* Persistent between Sessions
-* Stop Torrent once SeedRatio is reached (Optional)
-* Perform Actions on Torrent [Completion](docs/config.md#actions-on-torrent-completion) (Optional)
-* Powered by [anacrolix/torrent](https://github.com/anacrolix/torrent)
-* Download/Upload [Rate limiter](docs/usage.md#rate-limiter) (Optional)
-* Apply [Blocklist](docs/usage.md#blocklist) (Optional)
-* [Configurable](docs/config.md) via Config File but works fine with Zero Configuration
-* Share Files by Unlocking Torrent or Lock Torrent (protect by Auth)  to prevent External Access
-* Retrieve or Stream Files via HTTP
-* Multi-Users with Authentication
-* Auto Add Trackers to Torrent from TrackerList URL
-* Auto Fetch Torrent Metainfo from Online/Local Metainfo Cache
-* Download Directory as Zip or as Tarball
-* Stream directly on Browser or [VLC](https://www.videolan.org/vlc/) or [mpv](https://mpv.io/) or other Media Players
-* [Documented API](docs/API.md)
-* Uses Sqlite3 (embedded database with no setup and no configuration) by Default for [Database](docs/database.md) but PostgreSQL can be used instead too
 
 ## License
 [GPL-v3](LICENSE)
