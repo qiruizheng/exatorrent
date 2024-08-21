@@ -26,7 +26,7 @@
 
   let changepw = () => {
     if (newpassword.length < 5) {
-      alert('Size of New Password must be more than 5');
+      alert('新密码的长度必须大于 5');
       return;
     }
     Send({
@@ -86,7 +86,7 @@
     <div class="flex items-center justify-between flex-wrap py-1 px-3">
       <div class="w-0 flex-1 flex items-center">
         <p class="mx-1 font-medium  truncate">
-          User Settings {#if localStorage.getItem('exausertype') === 'admin'} <span class="text-xs font-semibold inline-block py-1 px-2  rounded-md text-neutral-300 bg-zinc-700 ml-3 last:mr-0 mr-1">admin</span>{/if}
+          用户设置 {#if localStorage.getItem('exausertype') === 'admin'} <span class="text-xs font-semibold inline-block py-1 px-2  rounded-md text-neutral-300 bg-zinc-700 ml-3 last:mr-0 mr-1">admin</span>{/if}
         </p>
       </div>
     </div>
@@ -125,7 +125,7 @@
         {/if}
       </div>
       <div class="grid grid-flow-col grid-cols-4 pr-2 bg-neutral-800 rounded-md my-2 appearance-none border border-neutral-800 w-full">
-        <div class=" bg-neutral-800  col-span-3 appearance-none rounded-md w-full flex-grow px-3 py-2  border-none  text-neutral-300  focus:outline-none">Don't Start Torrents on Add</div>
+        <div class=" bg-neutral-800  col-span-3 appearance-none rounded-md w-full flex-grow px-3 py-2  border-none  text-neutral-300  focus:outline-none">不要在添加后开始下载Torrents</div>
         <div class="flex items-center justify-end w-full my-2 mr-2">
           <label for="dontstarttoggle" class="flex items-center cursor-pointer">
             <div class="relative">
@@ -136,7 +136,7 @@
       </div>
       {#if $isAdmin === true}
         <div class="grid grid-flow-col grid-cols-4 pr-2 bg-neutral-800 my-2 appearance-none border border-neutral-800 w-full rounded-md">
-          <div class=" bg-neutral-800  col-span-3 appearance-none  w-full flex-grow px-3 py-2  border-none  text-neutral-300  focus:outline-none">Admin Mode</div>
+          <div class=" bg-neutral-800  col-span-3 appearance-none  w-full flex-grow px-3 py-2  border-none  text-neutral-300  focus:outline-none">管理员模式</div>
           <div class="flex items-center justify-end w-full my-2 mr-2">
             <label for="dontstarttoggle" class="flex items-center cursor-pointer">
               <div class="relative">
@@ -154,7 +154,7 @@
   <div class="bg-black grid grid-flow-row text-white rounded-lg m-3 p-2 cursor-pointer focus:outline-none focus-within:bg-black noHL">
     <div class="flex items-center justify-between flex-wrap py-1 px-3">
       <div class="w-0 flex-1 flex items-center" on:click={diskusageaction}>
-        <p class="ml-3 font-medium  truncate">Disk Usage</p>
+        <p class="ml-3 font-medium  truncate">磁盘使用情况</p>
       </div>
 
       {#if diskstatsOpen === true}
@@ -188,13 +188,13 @@
     <div class="flex flex-col">
       {#if diskstatsOpen === true}
         <div class="m-1 p-1 break-all">
-          Total: {fileSize($diskstats?.total)}
+          总计: {fileSize($diskstats?.total)}
         </div>
         <div class="m-1 p-1 break-all">
-          Free: {fileSize($diskstats?.free)}
+          剩余: {fileSize($diskstats?.free)}
         </div>
         <div class="m-1 p-1 break-all">
-          Used: {fileSize($diskstats?.used)} ({$diskstats?.usedPercent} %)
+          已用: {fileSize($diskstats?.used)} ({$diskstats?.usedPercent} %)
         </div>
       {/if}
     </div>
@@ -206,7 +206,7 @@
     <div class="bg-black grid grid-flow-row text-white rounded-lg m-3 p-2 cursor-pointer focus:outline-none focus-within:bg-black noHL">
       <div class="flex items-center justify-between flex-wrap py-1 px-3">
         <div class="w-0 flex-1 flex items-center" on:click={miscsettingsaction}>
-          <p class="ml-3 font-medium  truncate">Misc Settings</p>
+          <p class="ml-3 font-medium  truncate">其它设置</p>
         </div>
 
         {#if miscOpen === true}
@@ -241,7 +241,7 @@
       <div class="flex flex-col">
         {#if miscOpen === true}
           <div class="m-1 p-1 break-all">
-            Total Number of Trackers in TrackerDB: {$nooftrackersintrackerdb}
+            TrackerDB中的跟踪器总数: {$nooftrackersintrackerdb}
           </div>
           <button
             class="m-2 bg-zinc-800 py-3 max-w-3xl rounded-md justify-center"
@@ -251,7 +251,7 @@
                 data1: 'all',
                 aop: 1
               });
-            }}>Delete All Trackers in TrackerDB</button>
+            }}>删除TrackerDB中的所有跟踪器</button>
           <button
             class="m-2 bg-zinc-800 py-3 max-w-3xl rounded-md justify-center"
             on:click={() => {
@@ -259,7 +259,7 @@
                 command: 'trackerdbrefresh',
                 aop: 1
               });
-            }}>Refresh TrackerDB</button>
+            }}>刷新TrackerDB</button>
           <button
             class="m-2 bg-zinc-800 py-3 max-w-3xl rounded-md justify-center"
             on:click={() => {
@@ -267,9 +267,9 @@
                 command: 'stoponseedratio',
                 aop: 1
               });
-            }}>Seed Ratio Check</button>
+            }}>做种率检查</button>
           <div class="flex flex-col mt-1">
-            <input type="text" bind:value={trdelno} required class="m-1 bg-neutral-800 appearance-none rounded-md max-w-3xl px-3 py-2 border border-blue-800 placeholder-neutral-500 text-neutral-200  focus:outline-none sm:text-sm mx-1" placeholder="Delete these many trackers from TrackerDB" />
+            <input type="text" bind:value={trdelno} required class="m-1 bg-neutral-800 appearance-none rounded-md max-w-3xl px-3 py-2 border border-blue-800 placeholder-neutral-500 text-neutral-200  focus:outline-none sm:text-sm mx-1" placeholder="从TrackerDB中删除这些跟踪器" />
             <button
               type="button"
               class="m-1 bg-zinc-800 py-3 max-w-3xl rounded-md justify-center noHL"
@@ -280,11 +280,11 @@
                   aop: 1
                 });
               }}>
-              Delete Trackers
+              删除Trackers
             </button>
           </div>
           <div class="flex flex-col mt-3">
-            <input type="text" bind:value={srno} required class="mt-3 bg-neutral-800 appearance-none rounded-md max-w-3xl  px-3 py-2 border border-blue-800 placeholder-neutral-500 text-neutral-200  focus:outline-none sm:text-sm mx-1" placeholder="Stop Torrents on Reaching this Seedratio" />
+            <input type="text" bind:value={srno} required class="mt-3 bg-neutral-800 appearance-none rounded-md max-w-3xl  px-3 py-2 border border-blue-800 placeholder-neutral-500 text-neutral-200  focus:outline-none sm:text-sm mx-1" placeholder="达到这一播种率后停止做种" />
             <button
               type="button"
               class="m-1 bg-zinc-800 py-3 max-w-3xl rounded-md justify-center noHL"
@@ -307,7 +307,7 @@
     <div class="bg-black grid grid-flow-row text-white rounded-lg m-3 p-2 cursor-pointer focus:outline-none focus-within:bg-black noHL">
       <div class="flex items-center justify-between flex-wrap py-1 px-3">
         <div class="w-0 flex-1 flex items-center" on:click={enginesettingsOpen}>
-          <p class="ml-3 font-medium  truncate">Engine Settings</p>
+          <p class="ml-3 font-medium  truncate">引擎设置</p>
         </div>
 
         {#if engsettingsOpen === true}
@@ -316,7 +316,7 @@
             type="button"
             on:click={() => {
               if (engsettingsstring?.length === 0) {
-                alert('Empty Config!');
+                alert('空配置!');
               } else {
                 let b64config = window.btoa(engsettingsstring);
                 Send({
@@ -325,7 +325,7 @@
                   aop: 1
                 });
               }
-            }}>Update</button>
+            }}>更新</button>
           <button
             type="button"
             class="flex p-2 rounded-md bg-neutral-800 focus:outline-none flex-shrink-0 mx-1"
@@ -369,5 +369,5 @@
     class="w-full my-2 mx-3 flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-black focus:outline-none"
     on:click={() => {
       slocation.goto('/about');
-    }}>About exatorrent</button>
+    }}>关于exatorrent</button>
 </div>
