@@ -287,7 +287,7 @@ export let SocketHandler = (event: MessageEvent) => {
         terrormsg.set({ has: false, msg: '' });
         downloadslist.set({ has: true, data: msg.data as DlObject[] });
       } else {
-        terrormsg.set({ has: true, msg: 'No Torrents' });
+        terrormsg.set({ has: true, msg: '没有Torrents' });
         downloadslist.set({ has: true, data: [] as DlObject[] });
       }
       break;
@@ -304,7 +304,7 @@ export let SocketHandler = (event: MessageEvent) => {
           seeding: msg.data?.seeding
         } as DlObject);
       } else {
-        terrormsg.set({ has: true, msg: 'No Torrent Info' });
+        terrormsg.set({ has: true, msg: '没有Torrent信息' });
         torrentinfo.set({} as DlObject);
       }
       break;
