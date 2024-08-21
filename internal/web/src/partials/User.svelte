@@ -31,6 +31,6 @@
       </div>
     {/each}
   {:else}
-    <p class="text-xl text-center text-red-400 font-sans">User owns no Torrents</p>
+    <p class="text-xl text-center text-red-400 font-sans">用户没有Torrents</p>
   {/if}
 </div>
