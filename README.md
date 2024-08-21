@@ -24,7 +24,7 @@
 * 感谢 exatorrent 的文档 [WebSocket]（https://datatracker.ietf.org/doc/html/rfc6455） [API]（docs/API.md），可以创建自定义客户端。
 * 它支持单用户模式和多用户模式。
 * 种子下载文件存储在本地磁盘中，可以通过 HTTP/浏览器/媒体播放器下载和流式传输。
-
+ 默认用户的用户名和密码分别为adminuser和adminpassword
 
 ## Usage
 
