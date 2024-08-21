@@ -72,7 +72,7 @@
   <div class="max-w-md w-full ">
     <div>
       <h2 class=" text-center text-3xl font-extrabold text-neutral-300">
-        {#if ismetainfo}Enter Magnet or Infohash{:else}Select Torrent File{/if}
+        {#if ismetainfo}输入Magnet或Infohash{:else}Select Torrent File{/if}
       </h2>
     </div>
 
@@ -93,7 +93,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="text-neutral-400 h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
               </svg>
-              Select a Torrent File
+              选择一个Torrent文件
             </div>
             <input accept=".torrent,application/x-bittorrent" bind:this={trntfileinput} on:change={(e) => readtrnt(e)} id="torrentfile" name="torrentfile" type="file" class="hidden" />
           </label>
@@ -109,7 +109,7 @@
         </button>
       </div>
 
-      <button type="button" class="w-full my-2 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-900 hover:bg-indigo-700 focus:outline-none focus:ring-2" on:click={addfunc}> Add </button>
+      <button type="button" class="w-full my-2 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-900 hover:bg-indigo-700 focus:outline-none focus:ring-2" on:click={addfunc}>添加</button>
     </div>
   </div>
 </div>
@@ -139,7 +139,7 @@
           d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
-      Settings
+      设置
     </div>
   </div>
   {#if $isAdmin}
@@ -152,7 +152,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
         </svg>
-        Users
+        用户
       </div>
       <div
         class="bg-neutral-800 text-neutral-200 px-5 py-5 rounded-lg m-3 cursor-pointer"
@@ -162,7 +162,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
         </svg>
-        Stats
+        统计
       </div>
     </div>
   {/if}
