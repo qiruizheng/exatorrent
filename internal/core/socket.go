@@ -98,7 +98,7 @@ func SocketAPI(w http.ResponseWriter, r *http.Request) {
 		var resp ConReq
 		err = json.Unmarshal(Req, &resp)
 		if err != nil {
-			_ = Uc.SendMsg("resp", "error", "incorrect request")
+			_ = Uc.SendMsg("resp", "error", "请求不正确")
 			continue
 		}
 		go wshandler(Uc, &resp)
@@ -107,7 +107,7 @@ func SocketAPI(w http.ResponseWriter, r *http.Request) {
 
 func wshandler(uc *UserConn, req *ConReq) {
 	if len(req.Command) == 0 {
-		_ = uc.SendMsg("resp", "error", "no command sent")
+		_ = uc.SendMsg("resp", "error", "未发送请求")
 		return
 	}
 
@@ -138,37 +138,37 @@ func wshandler(uc *UserConn, req *ConReq) {
 			} else if req.Data3 == "disabled" {
 				err = Engine.UDb.Add(req.Data1, req.Data2, -1) // Disabled
 			} else {
-				_ = uc.SendMsg("resp", "error", "incorrect adduser request")
+				_ = uc.SendMsg("resp", "error", "不正确的adduser请求")
 				return
 			}
 			if err != nil {
-				_ = uc.SendMsg("resp", "error", "Error Adding User to Database")
+				_ = uc.SendMsg("resp", "error", "将用户添加到数据库时出错")
 				return
 			}
-			_ = uc.SendMsg("resp", "success", req.Data1+" User Added")
+			_ = uc.SendMsg("resp", "success", req.Data1+" 用户已添加")
 			Info.Println("New User ", req.Data1, " added by ", uc.Username)
 			return
 		case "removeuser":
 			if !(len(req.Data1) > 5) {
-				_ = uc.SendMsg("resp", "error", "length of username  must be more than 5")
+				_ = uc.SendMsg("resp", "error", "用户名长度必须大于5")
 				return
 			}
 			if req.Data1 == uc.Username {
-				_ = uc.SendMsg("resp", "error", "you cannot remove yourself")
+				_ = uc.SendMsg("resp", "error", "你不能移除你自己")
 				return
 			}
 			err := Engine.UDb.Delete(req.Data1)
 			if err != nil {
-				_ = uc.SendMsg("resp", "error", "Error Removing User from Database")
+				_ = uc.SendMsg("resp", "error", "从数据库中删除用户时出错")
 				return
 			}
 			err = Engine.TUDb.RemoveAll(req.Data1)
 			if err != nil {
-				_ = uc.SendMsg("resp", "error", "Error Deleting User Records from Database")
+				_ = uc.SendMsg("resp", "error", "从数据库中删除用户记录时出错")
 				return
 			}
 			MainHub.RemoveUser(req.Data1)
-			_ = uc.SendMsg("resp", "success", req.Data1+" User Removed")
+			_ = uc.SendMsg("resp", "success", req.Data1+" 用户已移除")
 			Info.Println("User ", req.Data1, " is removed by ", uc.Username)
 			return
 		case "getalltorrents":
@@ -236,7 +236,7 @@ func wshandler(uc *UserConn, req *ConReq) {
 				ret, _ := json.Marshal(DataMsg{Type: "torrentsforuser", Data: Engine.TUDb.ListTorrents(req.Data1)})
 				_ = uc.Send(ret)
 			} else {
-				_ = uc.SendMsg("resp", "error", "username is empty")
+				_ = uc.SendMsg("resp", "error", "用户名是空的")
 			}
 			return
 		case "getusers":
@@ -247,13 +247,13 @@ func wshandler(uc *UserConn, req *ConReq) {
 		case "updatepw":
 			defer func() {
 				if r := recover(); r != nil { // uuid may panic
-					_ = uc.SendMsg("resp", "error", "uuid error")
+					_ = uc.SendMsg("resp", "error", "uuid错误")
 					Warn.Println("uuid error")
 					return
 				}
 			}()
 			if req.Data1 == "" {
-				_ = uc.SendMsg("resp", "error", "request error")
+				_ = uc.SendMsg("resp", "error", "请求错误")
 				return
 			}
 			err := Engine.UDb.UpdatePw(req.Data1, req.Data2)
@@ -265,18 +265,18 @@ func wshandler(uc *UserConn, req *ConReq) {
 			if err != nil {
 				_ = uc.SendMsg("resp", "error", err.Error())
 			}
-			_ = uc.SendMsg("resp", "success", "Password of "+req.Data1+" updated")
+			_ = uc.SendMsg("resp", "success", "密码"+req.Data1+" 已更新")
 			return
 		case "revoketoken":
 			defer func() {
 				if r := recover(); r != nil { // uuid may panic
-					_ = uc.SendMsg("resp", "error", "uuid error")
+					_ = uc.SendMsg("resp", "error", "uuid错误")
 					Warn.Println("uuid error")
 					return
 				}
 			}()
 			if req.Data1 == "" {
-				_ = uc.SendMsg("resp", "error", "request error")
+				_ = uc.SendMsg("resp", "error", "请求错误")
 				return
 			}
 			MainHub.RemoveUser(req.Data1)
@@ -284,17 +284,17 @@ func wshandler(uc *UserConn, req *ConReq) {
 			if err != nil {
 				_ = uc.SendMsg("resp", "error", err.Error())
 			}
-			_ = uc.SendMsg("resp", "success", "revoked token of "+req.Data1)
+			_ = uc.SendMsg("resp", "success", "已吊销的令牌"+req.Data1)
 			return
 		case "changeusertype":
 			Info.Println(uc.Username, "has requested to change usertype of ", req.Data1, " to ", req.Data2)
 			if req.Data1 == "" {
-				_ = uc.SendMsg("resp", "error", "username can be empty")
+				_ = uc.SendMsg("resp", "error", "用户名不能为空")
 				Warn.Println("Usertype change request of ", uc.Username, " failed")
 				return
 			}
 			if req.Data1 == uc.Username {
-				_ = uc.SendMsg("resp", "error", "you can't change usertype of yourself")
+				_ = uc.SendMsg("resp", "error", "您无法更改自己的用户类型")
 				Warn.Println("Usertype change request of ", uc.Username, " failed")
 				return
 			}
@@ -303,7 +303,7 @@ func wshandler(uc *UserConn, req *ConReq) {
 			if err != nil {
 				_ = uc.SendMsg("resp", "error", err.Error())
 			}
-			_ = uc.SendMsg("resp", "success", "changed usertype of "+req.Data1+" to "+req.Data2)
+			_ = uc.SendMsg("resp", "success", req.Data1+"改变用户类型为"+req.Data2)
 			Info.Println(uc.Username, "has changed usertype of ", req.Data1, " to ", req.Data2)
 			return
 		case "machinfo":
@@ -329,18 +329,18 @@ func wshandler(uc *UserConn, req *ConReq) {
 			return
 		case "updateconfig":
 			if req.Data1 == "" {
-				_ = uc.SendMsg("resp", "error", "empty config file")
+				_ = uc.SendMsg("resp", "error", "空的配置文件")
 				return
 			}
 			configfile, berr := base64.StdEncoding.DecodeString(req.Data1)
 			if berr != nil {
-				_ = uc.SendMsg("resp", "error", "error decoding config file")
+				_ = uc.SendMsg("resp", "error", "解码配置文件时出错")
 				return
 			}
 			var newconfig EngConfig
 			berr = json.Unmarshal(configfile, &newconfig)
 			if berr != nil {
-				_ = uc.SendMsg("resp", "error", "error decoding config file")
+				_ = uc.SendMsg("resp", "error", "解码配置文件时出错")
 				return
 			}
 			Configmu.Lock()
@@ -366,9 +366,9 @@ func wshandler(uc *UserConn, req *ConReq) {
 
 									_, err := Engine.TorDb.GetTorrent(infohash)
 									if err != nil {
-										Info.Println(infohash, " Removed")
+										Info.Println(infohash, " 已移除")
 									} else {
-										Info.Println(infohash, " Completed")
+										Info.Println(infohash, " 已完成")
 										hpu := Engine.Econfig.GetHPU()
 										if hpu != "" {
 											trntname := ""
@@ -388,12 +388,12 @@ func wshandler(uc *UserConn, req *ConReq) {
 			_ = Engine.Econfig.WriteConfig()
 			Info.Println("Torrent Configuration has been Updated by ", uc.Username)
 			Configmu.Unlock()
-			_ = uc.SendMsg("resp", "success", "New Torrent Config File has been set successfully")
+			_ = uc.SendMsg("resp", "success", "新的Torrent配置文件已成功设置。")
 			return
 		case "listusersfortorrent":
 			ih, err := MetafromHex(req.Data1)
 			if err != nil {
-				_ = uc.SendMsg("resp", "error", "listusersfortorrent: infohash couldn't be parsed "+req.Data1)
+				_ = uc.SendMsg("resp", "error", "ListUsersForTorrent：无法解析InfoHash"+req.Data1)
 				return
 			}
 			ret, _ := json.Marshal(DataMsg{Type: "usersfortorrent", Infohash: ih.HexString(), Data: Engine.TUDb.ListUsers(ih)})
@@ -409,7 +409,7 @@ func wshandler(uc *UserConn, req *ConReq) {
 		case "changedataload":
 			ih, err := MetafromHex(req.Data1)
 			if err != nil {
-				_ = uc.SendMsg("resp", "error", "stopfile: infohash couldn't be parsed "+req.Data1)
+				_ = uc.SendMsg("resp", "error", "停止文件: 无法解析infohash"+req.Data1)
 				return
 			}
 			t, ok := Engine.Torc.Torrent(ih)
