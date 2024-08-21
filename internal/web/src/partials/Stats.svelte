@@ -45,7 +45,7 @@
   <div class="bg-black grid grid-flow-row text-white rounded-lg m-3 p-2 cursor-pointer focus:outline-none focus-within:bg-black noHL">
     <div class="flex items-center justify-between flex-wrap py-1 px-3">
       <div class="w-0 flex-1 flex items-center" on:click={devinfoaction}>
-        <p class="ml-3 font-medium  truncate">Device Info</p>
+        <p class="ml-3 font-medium  truncate">设备信息</p>
       </div>
 
       <button type="button" class="-mr-1 flex p-2 rounded-md bg-neutral-800 focus:outline-none flex-shrink-0 mx-1" on:click={devinfoaction}>
@@ -83,7 +83,7 @@
   <div class="bg-black grid grid-flow-row text-white rounded-lg m-3 p-2 cursor-pointer focus:outline-none focus-within:bg-black noHL">
     <div class="flex items-center justify-between flex-wrap py-1 px-3">
       <div class="w-0 flex-1 flex items-center" on:click={devicestatsaction}>
-        <p class="ml-3 font-medium  truncate">Device Stats</p>
+        <p class="ml-3 font-medium  truncate">设备统计信息</p>
       </div>
 
       {#if devicestatsOpen === true}
@@ -131,7 +131,7 @@
   <div class="bg-black grid grid-flow-row text-white rounded-lg m-3 p-2 cursor-pointer focus:outline-none focus-within:bg-black noHL">
     <div class="flex items-center justify-between flex-wrap py-1 px-3">
       <div class="w-0 flex-1 flex items-center" on:click={torcstatsaction}>
-        <p class="ml-3 font-medium  truncate">Torrent Client Status</p>
+        <p class="ml-3 font-medium  truncate">Torrent客户端状态</p>
       </div>
 
       {#if torcstatsOpen === true}
